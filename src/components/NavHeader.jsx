@@ -47,7 +47,12 @@ const NavHeader = () => {
 
         {links.map((link) => (
           <Button color="inherit">
-            <Link className={classes.navLink} to={link.path} key={link.id}>
+            <Link
+              className={classes.navLink}
+              to={link.path}
+              key={link.id}
+              replace
+            >
               {link.label}
             </Link>
           </Button>

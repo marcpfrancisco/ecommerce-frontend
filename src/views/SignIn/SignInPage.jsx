@@ -1,14 +1,15 @@
 import {
-  Grid,
+  Backdrop,
+  Button,
   Card,
   CardContent,
-  TextField,
-  Typography,
+  CircularProgress,
+  Grid,
   makeStyles,
-  Button,
   Snackbar,
   Tab,
   Tabs,
+  TextField,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useState } from "react";
@@ -17,6 +18,10 @@ import "./signinpage.scoped.sass";
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(12),
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: "#fff",
   },
 }));
 
@@ -70,6 +75,7 @@ const SignInPage = () => {
 
     const { email, password } = formValues;
 
+    setIsLoading(true);
     if (email === "" || password === "") {
       setShowAlert(true);
       setError("Fields are required");
@@ -77,6 +83,7 @@ const SignInPage = () => {
     }
 
     console.log({ email, password });
+    setIsLoading(false);
   };
 
   const handleClose = () => {
@@ -170,6 +177,10 @@ const SignInPage = () => {
           </Card>
         </Grid>
       </Grid>
+
+      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 };

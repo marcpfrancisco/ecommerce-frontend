@@ -1,13 +1,11 @@
 import {
   AppBar,
   Button,
-  IconButton,
   Toolbar,
   Typography,
   makeStyles,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import MenuIcon from "@material-ui/icons/Menu";
 import { NAV_LINKS } from "constants/index";
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +44,7 @@ const NavHeader = () => {
         </Typography>
 
         {links.map((link) => (
-          <Button color="inherit">
+          <Button color="inherit" key={link.id}>
             <Link
               className={classes.navLink}
               to={link.path}

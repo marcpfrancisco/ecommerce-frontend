@@ -58,7 +58,7 @@ const SignInPage = () => {
 
   const [error, setError] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  const [isloading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [tabValue, setTabValue] = useState(0);
 
   const handleChange = (e) => {
@@ -75,14 +75,20 @@ const SignInPage = () => {
 
     const { email, password } = formValues;
 
-    setIsLoading(true);
-    if (email === "" || password === "") {
-      setShowAlert(true);
-      setError("Fields are required");
-      return;
+    try {
+      setIsLoading(true);
+      if (email === "" || password === "") {
+        setShowAlert(true);
+        setError("Fields are required");
+        setIsLoading(false);
+        return;
+      }
+
+      console.log({ email, password });
+    } catch (e) {
+      setError("Failed to login!");
     }
 
-    console.log({ email, password });
     setIsLoading(false);
   };
 
@@ -178,7 +184,11 @@ const SignInPage = () => {
         </Grid>
       </Grid>
 
-      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+      <Backdrop
+        className={classes.backdrop}
+        open={isLoading}
+        onClick={handleClose}
+      >
         <CircularProgress color="inherit" />
       </Backdrop>
     </>

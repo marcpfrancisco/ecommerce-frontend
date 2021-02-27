@@ -6,7 +6,9 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
+import { NAV_LINKS } from "constants/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,10 +20,15 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  navLink: {
+    textDecoration: "none",
+    color: "inherit",
+  },
 }));
 
 const NavHeader = () => {
   const classes = useStyles();
+  const links = NAV_LINKS;
 
   return (
     <AppBar position="static">
@@ -37,11 +44,14 @@ const NavHeader = () => {
         <Typography variant="h6" className={classes.title}>
           Clothing Store
         </Typography>
-        <Button color="inherit">Home</Button>
-        <Button color="inherit">About</Button>
-        <Button color="inherit">Contact</Button>
-        <Button color="inherit">Login</Button>
-        <Button color="inherit">Signup</Button>
+
+        {links.map((link) => (
+          <Button color="inherit">
+            <Link className={classes.navLink} to={link.path} key={link.id}>
+              {link.label}
+            </Link>
+          </Button>
+        ))}
       </Toolbar>
     </AppBar>
   );

@@ -135,6 +135,8 @@ const SignInPage = () => {
                 value={tabValue}
                 onChange={handleTabs}
                 aria-label="simple tabs example"
+                indicatorColor="primary"
+                centered
               >
                 <Tab label="Sign In" {...getIndex(0)} />
                 <Tab label="Sign Up" {...getIndex(1)} />

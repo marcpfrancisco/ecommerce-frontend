@@ -3,7 +3,6 @@ import { Container } from "@material-ui/core";
 import LandingPage from "views/LandingPage";
 import NavHeader from "components/NavHeader";
 import SignInPage from "views/SignIn/SignInPage";
-import SignupPage from "views/SignupPage";
 
 function App() {
   return (
@@ -16,15 +15,11 @@ function App() {
               <Route exact path="/">
                 <LandingPage />
               </Route>
-
-              <Route exact path="/signin">
-                <SignInPage />
-              </Route>
-
-              <Route exact path="/signup">
-                <SignupPage />
-              </Route>
             </Container>
+
+            <Route exact path="/signin">
+              <SignInPage />
+            </Route>
           </div>
         </>
       </Switch>

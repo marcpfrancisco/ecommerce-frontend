@@ -19,9 +19,4 @@ export const NAV_LINKS = [
     label: "Signin",
     path: "/signin",
   },
-  {
-    id: 5,
-    label: "Signup",
-    path: "/signup",
-  },
 ];

@@ -278,7 +278,7 @@ const SignInPage = () => {
                       <Button color="primary">Sign in instead</Button>
                     </Grid>
 
-                    <Grid item style={{ marginLeft: "-12px" }}>
+                    <Grid item style={{ marginLeft: "-8px" }}>
                       <Button variant="contained" color="primary">
                         Sign Up
                       </Button>

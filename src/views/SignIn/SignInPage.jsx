@@ -1,9 +1,15 @@
 import {
   Backdrop,
   Button,
+  capitalize,
   Card,
   CardContent,
+  Checkbox,
   CircularProgress,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormHelperText,
   Grid,
   makeStyles,
   Snackbar,
@@ -23,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: "#fff",
+  },
+  signUpTextFields: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: "25ch",
   },
 }));
 
@@ -60,6 +71,7 @@ const SignInPage = () => {
   const [error, setError] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [tabValue, setTabValue] = useState(0);
 
   const handleChange = (e) => {
@@ -101,6 +113,12 @@ const SignInPage = () => {
     setTabValue(newValue);
   };
 
+  const handleCheckBox = (e) => {
+    const { name, checked } = e.target;
+
+    setIsChecked({ ...isChecked, [name]: checked });
+  };
+
   return (
     <>
       <Grid container className={classes.root}>
@@ -116,7 +134,7 @@ const SignInPage = () => {
         </Grid>
 
         <Grid className="right" item xs={12} md={6}>
-          <Card>
+          <Card raised>
             <CardContent>
               <Snackbar
                 anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -141,46 +159,132 @@ const SignInPage = () => {
               </Tabs>
 
               <TabPanel value={tabValue} index={0}>
-                <form className="form-fields" onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <TextField
-                      variant="outlined"
-                      label="Email"
-                      type="email"
-                      name="email"
-                      autoComplete="off"
-                      onChange={handleChange}
-                      fullWidth
-                    />
-                  </div>
+                <form
+                  className="form-fields"
+                  onSubmit={handleSubmit}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <Typography variant="h6" align="center">
+                    Sign in to your Account
+                  </Typography>
 
-                  <div className="form-group">
-                    <TextField
-                      variant="outlined"
-                      label="Password"
-                      type="password"
-                      name="password"
-                      autoComplete="off"
-                      onChange={handleChange}
-                      fullWidth
-                    />
-                  </div>
+                  <TextField
+                    variant="outlined"
+                    label="Email"
+                    type="email"
+                    name="email"
+                    onChange={handleChange}
+                  />
 
-                  <div className="form-group">
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                    >
-                      LOGIN
-                    </Button>
-                  </div>
+                  <TextField
+                    variant="outlined"
+                    label="Password"
+                    type="password"
+                    name="password"
+                    onChange={handleChange}
+                  />
+
+                  <Button type="submit" variant="contained" color="primary">
+                    Sign In
+                  </Button>
                 </form>
               </TabPanel>
 
               <TabPanel value={tabValue} index={1}>
-                Sign Up Form
+                <form className="form-fields" noValidate autoComplete="off">
+                  <Typography variant="h6" style={{ margin: "0 23px" }}>
+                    Create your VonFactory Account
+                  </Typography>
+                  <Grid container spacing={2}>
+                    <Grid item>
+                      <TextField
+                        variant="outlined"
+                        label="Firstname"
+                        type="text"
+                        name="firstname"
+                        size="small"
+                      />
+                    </Grid>
+
+                    <Grid item>
+                      <TextField
+                        variant="outlined"
+                        label="Lastname"
+                        type="text"
+                        name="lastname"
+                        size="small"
+                      />
+                    </Grid>
+
+                    <Grid item md={11} xs={11}>
+                      <TextField
+                        variant="outlined"
+                        label="Email Address"
+                        type="email"
+                        name="email"
+                        size="small"
+                        fullWidth
+                      />
+                    </Grid>
+
+                    <Grid item>
+                      <FormControl component="fieldset">
+                        <FormGroup row>
+                          <TextField
+                            variant="outlined"
+                            label="Password"
+                            type="password"
+                            name="password"
+                            size="small"
+                            style={{ marginRight: "17px" }}
+                          />
+
+                          <TextField
+                            variant="outlined"
+                            label="Confirm Password"
+                            type="password"
+                            name="confirmpassword"
+                            size="small"
+                          />
+                        </FormGroup>
+
+                        <FormHelperText>
+                          Use 8 or more characters with a mix of letters,
+                          numbers & symbols
+                        </FormHelperText>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                      <FormControl component="fieldset">
+                        <FormGroup row>
+                          <FormControlLabel
+                            control={
+                              <Checkbox
+                                checked={isChecked.showPassword}
+                                onChange={handleCheckBox}
+                                name="showPassword"
+                                color="primary"
+                              />
+                            }
+                            label="Show Password"
+                          />
+                        </FormGroup>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={9} style={{ marginLeft: "-6px" }}>
+                      <Button color="primary">Sign in instead</Button>
+                    </Grid>
+
+                    <Grid item style={{ marginLeft: "-12px" }}>
+                      <Button variant="contained" color="primary">
+                        Sign Up
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </form>
               </TabPanel>
             </CardContent>
           </Card>

@@ -1,7 +1,6 @@
 import {
   Backdrop,
   Button,
-  capitalize,
   Card,
   CardContent,
   Checkbox,
@@ -11,12 +10,14 @@ import {
   FormGroup,
   FormHelperText,
   Grid,
+  Hidden,
   makeStyles,
   Snackbar,
   Tab,
   Tabs,
   TextField,
   Typography,
+  withWidth,
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useState } from "react";
@@ -152,16 +153,18 @@ const SignInPage = () => {
   return (
     <>
       <Grid container className={classes.root}>
-        <Grid className="left" item xs={12} md={6}>
-          <Typography variant="h5">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem cum
-            eius sunt maxime fuga libero minima rerum alias, hic dolore quas in
-            sint. Voluptatem eveniet quo necessitatibus optio soluta quisquam
-            voluptatibus, sapiente minus laboriosam corporis natus consectetur
-            obcaecati neque quidem itaque suscipit sed ipsam harum ab possimus.
-            Sit, fugit facere!
-          </Typography>
-        </Grid>
+        <Hidden only="sm" xsDown>
+          <Grid className="left" item xs={12} md={6}>
+            <Typography variant="h5">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem
+              cum eius sunt maxime fuga libero minima rerum alias, hic dolore
+              quas in sint. Voluptatem eveniet quo necessitatibus optio soluta
+              quisquam voluptatibus, sapiente minus laboriosam corporis natus
+              consectetur obcaecati neque quidem itaque suscipit sed ipsam harum
+              ab possimus. Sit, fugit facere!
+            </Typography>
+          </Grid>
+        </Hidden>
 
         <Grid className="right" item xs={12} md={6}>
           <Card raised>
@@ -350,4 +353,4 @@ const SignInPage = () => {
   );
 };
 
-export default SignInPage;
+export default withWidth()(SignInPage);

@@ -63,30 +63,66 @@ const getIndex = (index) => {
 const SignInPage = () => {
   const classes = useStyles();
 
-  const [formValues, setFormValues] = useState({
+  const [valuesSignIn, setValuesSignIn] = useState({
     email: "",
     password: "",
+  });
+
+  const [valuesSignUp, setValuesSignUp] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+    showPassword: false,
+    isChecked: false,
   });
 
   const [error, setError] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+
   const [tabValue, setTabValue] = useState(0);
 
-  const handleChange = (e) => {
+  const handleChangeSignIn = (e) => {
     const { name, value } = e.target;
 
-    setFormValues((prevState) => ({
+    setValuesSignIn((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
+  const handleChangeSignUp = (e) => {
+    const { name, value } = e.target;
+
+    setValuesSignUp((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleClickShowPassword = () => {
+    setValuesSignUp({
+      ...valuesSignUp,
+      showPassword: !valuesSignUp.showPassword,
+    });
+  };
+
+  const handleCheckBox = (e) => {
+    const { name, checked } = e.target;
+    setValuesSignUp({ ...valuesSignUp, [name]: checked });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { email, password } = formValues;
+    const { email, password } = valuesSignIn;
 
     try {
       setIsLoading(true);
@@ -111,12 +147,6 @@ const SignInPage = () => {
 
   const handleTabs = (event, newValue) => {
     setTabValue(newValue);
-  };
-
-  const handleCheckBox = (e) => {
-    const { name, checked } = e.target;
-
-    setIsChecked({ ...isChecked, [name]: checked });
   };
 
   return (
@@ -174,7 +204,8 @@ const SignInPage = () => {
                     label="Email"
                     type="email"
                     name="email"
-                    onChange={handleChange}
+                    value={valuesSignIn.email}
+                    onChange={handleChangeSignIn}
                   />
 
                   <TextField
@@ -182,7 +213,8 @@ const SignInPage = () => {
                     label="Password"
                     type="password"
                     name="password"
-                    onChange={handleChange}
+                    value={valuesSignIn.password}
+                    onChange={handleChangeSignIn}
                   />
 
                   <Button type="submit" variant="contained" color="primary">
@@ -204,6 +236,8 @@ const SignInPage = () => {
                         type="text"
                         name="firstname"
                         size="small"
+                        value={valuesSignUp.firstname}
+                        onChange={handleChangeSignUp}
                       />
                     </Grid>
 
@@ -214,6 +248,8 @@ const SignInPage = () => {
                         type="text"
                         name="lastname"
                         size="small"
+                        value={valuesSignUp.lastname}
+                        onChange={handleChangeSignUp}
                       />
                     </Grid>
 
@@ -225,6 +261,8 @@ const SignInPage = () => {
                         name="email"
                         size="small"
                         fullWidth
+                        value={valuesSignUp.small}
+                        onChange={handleChangeSignUp}
                       />
                     </Grid>
 
@@ -234,18 +272,26 @@ const SignInPage = () => {
                           <TextField
                             variant="outlined"
                             label="Password"
-                            type="password"
                             name="password"
                             size="small"
                             style={{ marginRight: "17px" }}
+                            type={
+                              valuesSignUp.showPassword ? "text" : "password"
+                            }
+                            value={valuesSignUp.password}
+                            onChange={handleChangeSignUp}
                           />
 
                           <TextField
                             variant="outlined"
                             label="Confirm Password"
-                            type="password"
                             name="confirmpassword"
                             size="small"
+                            type={
+                              valuesSignUp.showPassword ? "text" : "password"
+                            }
+                            value={valuesSignUp.confirmpassword}
+                            onChange={handleChangeSignUp}
                           />
                         </FormGroup>
 
@@ -262,10 +308,12 @@ const SignInPage = () => {
                           <FormControlLabel
                             control={
                               <Checkbox
-                                checked={isChecked.showPassword}
-                                onChange={handleCheckBox}
                                 name="showPassword"
                                 color="primary"
+                                checked={isChecked.showPassword}
+                                onClick={handleClickShowPassword}
+                                onChange={handleCheckBox}
+                                onMouseDown={handleMouseDownPassword}
                               />
                             }
                             label="Show Password"
@@ -279,7 +327,7 @@ const SignInPage = () => {
                     </Grid>
 
                     <Grid item style={{ marginLeft: "-8px" }}>
-                      <Button variant="contained" color="primary">
+                      <Button type="submit" variant="contained" color="primary">
                         Sign Up
                       </Button>
                     </Grid>

@@ -40,7 +40,7 @@ const NavHeader = () => {
           <MenuIcon />
         </IconButton> */}
         <Typography variant="h6" className={classes.title}>
-          Clothing Store
+          VonFactory PH
         </Typography>
 
         {links.map((link) => (

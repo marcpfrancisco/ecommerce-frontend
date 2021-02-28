@@ -104,17 +104,15 @@ const SignInPage = () => {
   return (
     <>
       <Grid container className={classes.root}>
-        <Grid item xs={12} md={6}>
-          <Grid container display="flex" justify="center">
-            <Typography variant="h5">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem
-              cum eius sunt maxime fuga libero minima rerum alias, hic dolore
-              quas in sint. Voluptatem eveniet quo necessitatibus optio soluta
-              quisquam voluptatibus, sapiente minus laboriosam corporis natus
-              consectetur obcaecati neque quidem itaque suscipit sed ipsam harum
-              ab possimus. Sit, fugit facere!
-            </Typography>
-          </Grid>
+        <Grid className="left" item xs={12} md={6}>
+          <Typography variant="h5">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem cum
+            eius sunt maxime fuga libero minima rerum alias, hic dolore quas in
+            sint. Voluptatem eveniet quo necessitatibus optio soluta quisquam
+            voluptatibus, sapiente minus laboriosam corporis natus consectetur
+            obcaecati neque quidem itaque suscipit sed ipsam harum ab possimus.
+            Sit, fugit facere!
+          </Typography>
         </Grid>
 
         <Grid className="right" item xs={12} md={6}>

@@ -76,7 +76,6 @@ const SignInPage = () => {
     password: "",
     confirmpassword: "",
     showPassword: false,
-    isChecked: false,
   });
 
   const [error, setError] = useState("");
@@ -108,11 +107,6 @@ const SignInPage = () => {
       ...valuesSignUp,
       showPassword: !valuesSignUp.showPassword,
     });
-  };
-
-  const handleCheckBox = (e) => {
-    const { name, checked } = e.target;
-    setValuesSignUp({ ...valuesSignUp, [name]: checked });
   };
 
   const handleMouseDownPassword = (event) => {
@@ -314,7 +308,6 @@ const SignInPage = () => {
                                 color="primary"
                                 checked={valuesSignUp.showPassword}
                                 onClick={handleClickShowPassword}
-                                onChange={handleCheckBox}
                                 onMouseDown={handleMouseDownPassword}
                               />
                             }

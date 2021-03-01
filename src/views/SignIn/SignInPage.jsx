@@ -312,7 +312,7 @@ const SignInPage = () => {
                               <Checkbox
                                 name="showPassword"
                                 color="primary"
-                                checked={isChecked.showPassword}
+                                checked={valuesSignUp.showPassword}
                                 onClick={handleClickShowPassword}
                                 onChange={handleCheckBox}
                                 onMouseDown={handleMouseDownPassword}

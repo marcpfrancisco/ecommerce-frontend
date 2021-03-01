@@ -82,7 +82,6 @@ const SignInPage = () => {
   const [error, setError] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
 
   const [tabValue, setTabValue] = useState(0);
 
